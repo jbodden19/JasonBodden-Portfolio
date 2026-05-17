@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Craft Masters Roofing — Case Study · Jason Bodden</title>
+<meta name="description" content="Five months designing a recruitment funnel, customer-facing web pages, and a social content system for a Houston-based roofing company." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0e0e;
+    --bg-2:#161616;
+    --ink:#f4f1ea;
+    --ink-dim:#9a958c;
+    --line:#262626;
+    --accent:#c83333;
+    --accent-dim:#8a2222;
+    --max:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* NAV */
+  nav.top{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(14,14,14,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  nav.top .inner{
+    max-width:var(--max);margin:0 auto;
+    padding:18px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    font-size:20px;
+  }
+  .nav-links{display:flex;gap:32px;font-size:14px;color:var(--ink-dim)}
+  .nav-links a:hover{color:var(--ink)}
+  .back-link{font-size:14px;color:var(--ink-dim);display:inline-flex;align-items:center;gap:6px}
+  .back-link:hover{color:var(--ink)}
+
+  /* HEADER */
+  header.case{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:80px 32px 60px;
+  }
+  .eyebrow{
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+    margin-bottom:24px;
+  }
+  h1.case-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(40px,6vw,76px);
+    line-height:1.05;
+    letter-spacing:-0.025em;
+    max-width:14ch;
+    margin-bottom:32px;
+  }
+  h1.case-title em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:400;
+  }
+  .lede{
+    font-size:clamp(18px,1.6vw,22px);
+    color:var(--ink-dim);
+    max-width:60ch;
+    line-height:1.55;
+  }
+
+  /* META BAR */
+  .meta-grid{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px 80px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:60px;
+  }
+  .meta-grid > div .label{
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--ink-dim);margin-bottom:10px;
+  }
+  .meta-grid > div .value{
+    font-family:'Fraunces',serif;font-size:18px;font-weight:500;
+  }
+  .meta-grid > div .value a{
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+  }
+
+  /* SECTIONS */
+  section.chapter{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:100px 32px;
+    border-bottom:1px solid var(--line);
+  }
+  .chapter-num{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    color:var(--accent);
+    font-size:16px;
+    margin-bottom:16px;
+  }
+  h2.chapter-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(32px,4vw,48px);
+    line-height:1.1;
+    letter-spacing:-0.02em;
+    max-width:20ch;
+    margin-bottom:36px;
+  }
+  .chapter-body{
+    max-width:65ch;
+    color:var(--ink-dim);
+    font-size:18px;
+    line-height:1.7;
+  }
+  .chapter-body p{margin-bottom:20px}
+  .chapter-body strong{color:var(--ink);font-weight:500}
+  .chapter-body a{
+    color:var(--ink);
+    border-bottom:1px solid var(--accent);
+    padding-bottom:1px;
+  }
+  .chapter-body a:hover{color:var(--accent)}
+
+  /* IMAGE BLOCKS */
+  .img-block{margin-top:48px}
+  .img-block img{
+    width:100%;display:block;
+    border-radius:6px;
+    border:1px solid var(--line);
+    background:var(--bg-2);
+  }
+  .img-block.half{max-width:520px;margin-left:auto;margin-right:auto}
+  .img-caption{
+    font-size:13px;color:var(--ink-dim);
+    margin-top:14px;font-style:italic;
+  }
+
+  /* SUB-HEADINGS WITHIN CHAPTER */
+  .sub-heading{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:24px;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin-top:80px;
+    margin-bottom:12px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+  }
+  .sub-heading em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:400;
+  }
+  .sub-caption{
+    font-size:15px;
+    color:var(--ink-dim);
+    max-width:60ch;
+    line-height:1.6;
+    margin-bottom:8px;
+  }
+
+  /* IMAGE GRIDS */
+  .img-grid{
+    display:grid;
+    gap:20px;
+    margin-top:48px;
+  }
+  .img-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .img-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .img-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+  .img-grid figure img{
+    width:100%;display:block;
+    border-radius:6px;
+    border:1px solid var(--line);
+  }
+  .img-grid figcaption{
+    font-size:12px;color:var(--ink-dim);
+    margin-top:10px;
+    letter-spacing:0.04em;
+  }
+
+  /* LINK LIST (for live pages) */
+  .live-links{
+    margin-top:36px;
+    display:flex;flex-wrap:wrap;gap:12px;
+  }
+  .live-links a{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:14px;
+    color:var(--ink);
+    transition:all 0.2s;
+  }
+  .live-links a:hover{
+    border-color:var(--accent);
+    background:rgba(200,51,51,0.08);
+  }
+  .live-links a::after{content:'↗';color:var(--accent)}
+
+  /* CALLOUT */
+  .callout{
+    margin-top:48px;
+    padding:32px;
+    border-left:3px solid var(--accent);
+    background:var(--bg-2);
+    border-radius:0 6px 6px 0;
+  }
+  .callout p{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:20px;
+    line-height:1.5;
+    color:var(--ink);
+    max-width:55ch;
+  }
+
+  /* CLOSING */
+  section.closing{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:120px 32px;
+    text-align:center;
+  }
+  section.closing h3{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:clamp(28px,3.5vw,42px);
+    line-height:1.3;
+    max-width:30ch;
+    margin:0 auto 40px;
+    color:var(--ink);
+  }
+  .next-link{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:16px 28px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:15px;
+    transition:all 0.2s;
+  }
+  .next-link:hover{
+    border-color:var(--accent);
+    background:rgba(200,51,51,0.08);
+  }
+  .next-link::after{content:'→';color:var(--accent);font-size:18px}
+
+  /* FOOTER */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 32px;
+    text-align:center;
+    color:var(--ink-dim);
+    font-size:13px;
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:780px){
+    .meta-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+    .img-grid.cols-3,.img-grid.cols-4{grid-template-columns:repeat(2,1fr)}
+    .nav-links{display:none}
+    header.case{padding-top:48px}
+    section.chapter{padding:60px 24px}
+    nav.top .inner{padding:14px 20px}
+    header.case,.meta-grid,section.chapter,section.closing{padding-left:20px;padding-right:20px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <a href="../../index.html" class="logo">JB</a>
+    <div class="nav-links">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#contact">Let's talk</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case">
+  <div class="eyebrow">Internship · Featured Project</div>
+  <h1 class="case-title">Craft Masters <em>Roofing &amp; Exteriors</em></h1>
+  <p class="lede">Five months designing a recruitment funnel, customer-facing web pages, and a social content system for a Houston-based roofing company.</p>
+</header>
+
+<div class="meta-grid">
+  <div>
+    <div class="label">Role</div>
+    <div class="value">Design Intern</div>
+  </div>
+  <div>
+    <div class="label">Timeline</div>
+    <div class="value">Aug – Dec 2025</div>
+  </div>
+  <div>
+    <div class="label">Scope</div>
+    <div class="value">Web · Social · Video</div>
+  </div>
+  <div>
+    <div class="label">Live site</div>
+    <div class="value"><a href="https://www.craftmastersroofing.net/" target="_blank" rel="noopener">craftmastersroofing.net</a></div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="chapter">
+  <div class="chapter-num">— Overview</div>
+  <h2 class="chapter-title">A real client. Live shipped work. Production speed.</h2>
+  <div class="chapter-body">
+    <p>Craft Masters is a residential and commercial roofing company based in Houston, Texas, with 14+ years in business. During a five-month internship, I worked as the <strong>sole designer on their website</strong> and as part of a <strong>two-person team on social media</strong>.</p>
+    <p>The work spanned three areas: a recruitment funnel built from scratch, customer-facing web pages on Squarespace, and a high-volume social content system. All design direction came from the Craft Masters team — my job was to translate that direction into polished, on-brand deliverables, fast and consistently across formats.</p>
+    <p><strong>Tools:</strong> Squarespace · Adobe Photoshop · Adobe Illustrator · Adobe Premiere Pro</p>
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter">
+  <div class="chapter-num">— Chapter 01</div>
+  <h2 class="chapter-title">Recruitment funnel, built from zero.</h2>
+  <div class="chapter-body">
+    <p>Craft Masters needed to hire roofing sales consultants but had <strong>no dedicated recruitment page</strong> — applicants were going through the general contact form. I designed a complete funnel: a hiring landing page, an application form with résumé and video upload, and supporting recruitment videos for social.</p>
+    <p>The headline — <em>"Now Hiring: Roofing Solutions Consultants — Earn $85K–$175K+ Your First Year"</em> — leads with compensation because that's what the team wanted front and center for this audience. The page uses Craft Masters red as a single CTA color so the "Apply Now" button is the only thing competing for attention.</p>
+
+    <div class="live-links">
+      <a href="https://www.craftmastersroofing.net/form-application" target="_blank" rel="noopener">View live application page</a>
+    </div>
+
+    <div class="callout">
+      <p>"We needed something that would make the right person stop scrolling. Lead with the money, get them to apply, keep it simple."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter">
+  <div class="chapter-num">— Chapter 02</div>
+  <h2 class="chapter-title">Customer-facing web pages, end to end.</h2>
+  <div class="chapter-body">
+    <p>I designed and built five customer-facing pages on the Craft Masters site, each addressing a specific stage of the buying decision — from research, to trust-building, to inquiry.</p>
+    <p><strong>FAQ page</strong> — organized into four columns (About, Services, Materials &amp; Warranty, Process &amp; Timelines) to let visitors find answers without scrolling through a single long list.</p>
+    <p><strong>Financing Calculator page</strong> — introduces the Enhancify partner tool and explains affordable payment plans before sending visitors out to the calculator.</p>
+    <p><strong>Blog section</strong> — seven posts covering seasonal roofing topics, written by the team and laid out by me on Squarespace.</p>
+    <p>All five pages share the same navigation, type system, and red / blue color treatment so the site reads as one brand.</p>
+
+    <div class="live-links">
+      <a href="https://www.craftmastersroofing.net/faqs" target="_blank" rel="noopener">FAQ page</a>
+      <a href="https://www.craftmastersroofing.net/financing-calculator" target="_blank" rel="noopener">Financing Calculator</a>
+      <a href="https://www.craftmastersroofing.net/blogs" target="_blank" rel="noopener">Blog</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter">
+  <div class="chapter-num">— Chapter 03</div>
+  <h2 class="chapter-title">A social system, not just posts.</h2>
+  <div class="chapter-body">
+    <p>Working with one other designer, I produced social content across two formats: a <strong>multi-slide Instagram carousel</strong> and a series of <strong>standalone feed posts</strong> reinforcing the same themes.</p>
+    <p>What ties them together is the visual system: heavy red duotone photography, condensed sans-serif headlines, an angled white outline pulled from the Craft Masters logo, and a red label bar for the supporting line. I extended that system consistently across every piece so the feed reads as one campaign instead of disconnected posts.</p>
+  </div>
+
+  <!-- CAROUSEL -->
+  <h3 class="sub-heading">Instagram carousel — <em>Common Winter Roof Problems</em></h3>
+  <p class="sub-caption">A 4-slide swipeable post walking homeowners through the three most common winter roof issues, with how Craft Masters fixes each one.</p>
+
+  <div class="img-block">
+    <img src="images/carousel-cover.png" alt="Carousel cover slide — Common Winter Roof Problems and How We Fix Them" />
+    <div class="img-caption">Slide 00 — Cover</div>
+  </div>
+
+  <div class="img-grid cols-3">
+    <figure>
+      <img src="images/carousel-slide-01-flashing.png" alt="Carousel slide 1 — Leaks Around Flashing or Vents" />
+      <figcaption>Slide 01 — Flashing &amp; Vents</figcaption>
+    </figure>
+    <figure>
+      <img src="images/carousel-slide-02-cracked.png" alt="Carousel slide 2 — Cracked Shingles" />
+      <figcaption>Slide 02 — Cracked Shingles</figcaption>
+    </figure>
+    <figure>
+      <img src="images/carousel-slide-03-gutters.png" alt="Carousel slide 3 — Clogged Gutters" />
+      <figcaption>Slide 03 — Clogged Gutters</figcaption>
+    </figure>
+  </div>
+
+  <!-- STANDALONE POSTS -->
+  <h3 class="sub-heading">Standalone feed posts</h3>
+  <p class="sub-caption">Individual posts published across the feed, each addressing one winter roof issue at a time using the same visual system as the carousel.</p>
+
+  <div class="img-grid cols-3">
+    <figure>
+      <img src="images/social-clogged-gutters.png" alt="Standalone social post — Clogged Gutters" />
+      <figcaption>Clogged Gutters</figcaption>
+    </figure>
+    <figure>
+      <img src="images/social-cracked-shingles.png" alt="Standalone social post — Cracked Shingles" />
+      <figcaption>Cracked Shingles</figcaption>
+    </figure>
+    <figure>
+      <img src="images/social-flashing-vents.png" alt="Standalone social post — Leaks Around Flashing or Vents" />
+      <figcaption>Flashing &amp; Vents</figcaption>
+    </figure>
+  </div>
+
+  <!-- CLIENT REVIEW -->
+  <h3 class="sub-heading">Client review post</h3>
+  <p class="sub-caption">A standalone testimonial post — same visual system, different purpose: social proof.</p>
+
+  <div class="img-block half">
+    <img src="images/social-client-review.png" alt="Client Review social post featuring Amanda Miles' five-star review" />
+    <div class="img-caption">Amanda Miles · 5★ review</div>
+  </div>
+
+  <div class="callout">
+    <p>The visual treatment — red duotone, condensed display type, angled white outline — became the recognizable Craft Masters look across the entire social feed.</p>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <h3>Real reps on production speed, brand consistency, and shipping live work for an audience that wasn't a classroom.</h3>
+  <a class="next-link" href="../../index.html#work">See more work</a>
+</section>
+
+<footer>
+  © 2026 Jason Bodden · <a href="../../index.html" style="border-bottom:1px solid var(--accent);padding-bottom:1px">Back to portfolio</a>
+</footer>
+
+</body>
+</html>

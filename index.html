@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jason Bodden — Graphic Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0c0c0f;
+    --white: #edeef2;
+    --accent: #3b82f6;
+    --accent-bright: #60a5fa;
+    --muted: #9a9ba8;
+    --card-bg: #13131a;
+    --border: #25252f;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--black);
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--accent) !important;
+    color: #fff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO ANIMATIONS */
+  .hero { padding: 7rem 4rem 5rem; max-width: 1100px; margin: 0 auto; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 0.1s;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 7.5vw, 6.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+    animation-delay: 0.25s;
+  }
+
+  .hero h1 em { font-style: italic; font-weight: 700; color: var(--accent-bright); }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.7s ease forwards;
+    animation-delay: 0.45s;
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: #b8bac8;
+    max-width: 380px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .hero-tagline strong { color: var(--white); font-weight: 500; }
+
+  .hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line { width: 40px; height: 1px; background: var(--border); }
+
+  .hero-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 0.65s;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 22s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+
+  .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+  .marquee-item {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #b8bac8;
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+
+  .marquee-item span { color: var(--accent-bright); margin-right: 3rem; }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* SECTIONS */
+  .section { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; }
+
+  .section-label span {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #b8bac8;
+    font-weight: 400;
+  }
+
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* WORK GRID */
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  .work-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: block;
+  }
+
+  .work-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(59,130,246,0.12);
+  }
+
+  .work-card.featured { grid-column: 1 / -1; }
+
+  .card-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 20px,
+      rgba(255,255,255,0.015) 20px, rgba(255,255,255,0.015) 21px
+    );
+  }
+
+  .card-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(59,130,246,0.08);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .work-card:hover .card-thumb::after { opacity: 1; }
+
+  .card-thumb-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.4s ease;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b8bac8;
+  }
+
+  .work-card:hover .card-thumb-inner { transform: scale(1.04); }
+
+  .thumb-1 { background: #13151f; }
+  .thumb-2 { background: #131a1f; }
+  .thumb-3 { background: #17131f; }
+
+  .thumb-cm-logo {
+    background: #ffffff;
+  }
+  .thumb-cm-logo::before { display: none; }
+  .thumb-logo {
+    position: relative;
+    z-index: 1;
+    max-width: 55%;
+    max-height: 75%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+  }
+  .work-card:hover .thumb-logo { transform: scale(1.04); }
+
+  .thumb-kv { background: #1a1d2e; padding: 0; }
+  .thumb-kv::before { display: none; }
+  .thumb-full {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .work-card:hover .thumb-full { transform: scale(1.04); }
+
+  .thumb-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--accent-bright);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .work-card:hover .thumb-icon { border-color: var(--accent-bright); transform: rotate(12deg); }
+
+  .card-body {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card-meta { flex: 1; }
+
+  .card-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.35rem;
+    transition: color 0.2s;
+  }
+
+  .work-card:hover .card-title { color: var(--accent-bright); }
+
+  .card-desc { font-size: 0.875rem; color: #b8bac8; line-height: 1.6; font-weight: 300; }
+
+  .card-arrow {
+    color: #b8bac8;
+    font-size: 1.2rem;
+    transition: color 0.2s, transform 0.3s;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .work-card:hover .card-arrow { color: var(--accent-bright); transform: translate(4px, -4px); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+  }
+
+  .about-text p { color: #b8bac8; font-size: 0.95rem; line-height: 1.85; margin-bottom: 1rem; font-weight: 300; }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+
+  .skill-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: #b8bac8;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    cursor: default;
+    font-weight: 400;
+  }
+
+  .skill-tag:hover { border-color: var(--accent); color: var(--white); transform: translateY(-2px); }
+
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--accent-bright);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label { font-size: 0.82rem; color: #b8bac8; line-height: 1.5; font-weight: 300; }
+
+  /* CTA */
+  .cta-section { border-top: 1px solid var(--border); padding: 6rem 4rem; text-align: center; }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+
+  .cta-section p { color: #b8bac8; font-size: 1rem; margin-bottom: 2.5rem; font-weight: 300; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .cta-btn:hover { opacity: 0.85; transform: scale(1.05); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p { font-size: 0.8rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">JB</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-dot"></span>
+    Available for projects
+  </div>
+  <h1>Designing with<br>purpose. <em>Building</em><br>with intention.</h1>
+  <div class="hero-bottom">
+    <p class="hero-tagline">
+      I'm <strong>Jason Bodden</strong> — a graphic designer and web developer based in Honduras, focused on work that actually means something.
+    </p>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Brand Identity <span>✦</span></span>
+    <span class="marquee-item">Web Design <span>✦</span></span>
+    <span class="marquee-item">Visual Systems <span>✦</span></span>
+    <span class="marquee-item">HTML / CSS <span>✦</span></span>
+    <span class="marquee-item">Illustration <span>✦</span></span>
+    <span class="marquee-item">Typography <span>✦</span></span>
+    <span class="marquee-item">Brand Identity <span>✦</span></span>
+    <span class="marquee-item">Web Design <span>✦</span></span>
+    <span class="marquee-item">Visual Systems <span>✦</span></span>
+    <span class="marquee-item">HTML / CSS <span>✦</span></span>
+    <span class="marquee-item">Illustration <span>✦</span></span>
+    <span class="marquee-item">Typography <span>✦</span></span>
+  </div>
+</div>
+
+<section class="section" id="work">
+  <div class="section-label reveal"><span>Selected work</span></div>
+  <div class="work-grid">
+    <a href="work/craft-masters/" class="work-card featured reveal reveal-delay-1">
+      <div class="card-thumb thumb-cm-logo">
+        <img src="work/craft-masters/images/craft-masters-logo.jpg" alt="Craft Masters Roofing &amp; Exteriors logo" class="thumb-logo">
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <div class="card-tag">Internship · Featured</div>
+          <div class="card-title">Craft Masters Roofing &amp; Exteriors</div>
+          <div class="card-desc">Five months designing a recruitment funnel, customer-facing web pages, and a social content system for a Houston roofing company.</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+    </a>
+    <a href="work/kaffe-verse/index.html" class="work-card reveal reveal-delay-2">
+      <div class="card-thumb thumb-kv">
+        <img src="work/kaffe-verse/images/hero-logo.jpg" alt="Kaffe Verse — hooded mystical figure logo" class="thumb-full">
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <div class="card-tag">Concept · Packaging</div>
+          <div class="card-title">Kaffe Verse</div>
+          <div class="card-desc">A cold brew brand built around a hooded seer and the idea that some coffee is meant for clarity, not just caffeine.</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+    </a>
+    <a href="#" class="work-card reveal reveal-delay-3">
+      <div class="card-thumb thumb-3">
+        <div class="card-thumb-inner">
+          <div class="thumb-icon">▲</div>
+          Project image
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <div class="card-tag">Graphic Design</div>
+          <div class="card-title">Project Three</div>
+          <div class="card-desc">A short description of what this project is about.</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="section-label reveal"><span>About me</span></div>
+  <div class="about-grid">
+    <div class="about-text reveal reveal-delay-1">
+      <h2>More than a designer. A builder.</h2>
+      <p>I'm a <strong>graphic designer and web developer</strong> originally from Honduras, with a background in visual identity, web design, and brand systems. I graduated with an A.S. in Graphic Design from Broward College.</p>
+      <p>I don't take every project. I take the ones where <strong>design can actually change something</strong> — for a brand, a business, or a person. My work spans from brand identities to fully coded websites, always built with intention.</p>
+      <p>Bilingual in English and Spanish. Based in San Pedro Sula, Honduras.</p>
+      <div class="skills-list">
+        <span class="skill-tag">Brand Identity</span>
+        <span class="skill-tag">Typography</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">Illustration</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Adobe Illustrator</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">InDesign</span>
+        <span class="skill-tag">Visual Systems</span>
+      </div>
+    </div>
+    <div class="about-stats reveal reveal-delay-2">
+      <div class="stat-card">
+        <div class="stat-number">2+</div>
+        <div class="stat-label">Years designing professionally</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">A.S.</div>
+        <div class="stat-label">Graphic Design, Broward College</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Languages: English & Spanish</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">HN</div>
+        <div class="stat-label">Based in Honduras, working globally</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section reveal" id="contact">
+  <h2>Got a project in mind?</h2>
+  <p>Let's talk about what you're building and how I can help.</p>
+  <a href="mailto:jjbodden19@gmail.com" class="cta-btn">Say hello ↗</a>
+</div>
+
+<footer>
+  <p>© 2026 Jason Bodden</p>
+  <div class="footer-links">
+    <a href="#">Behance</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
