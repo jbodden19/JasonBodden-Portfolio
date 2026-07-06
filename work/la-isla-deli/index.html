@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Isla Deli — Case Study · Jason Bodden</title>
+<meta name="description" content="A full restaurant website designed and built from scratch for La Isla Deli, a 3-location island-food restaurant in Honduras, with WhatsApp-first ordering and event inquiries." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0e0e;
+    --bg-2:#161616;
+    --ink:#f4f1ea;
+    --ink-dim:#9a958c;
+    --line:#262626;
+    --accent:#e8722c;
+    --accent-dim:#c25a18;
+    --max:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* NAV */
+  nav.top{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(14,14,14,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  nav.top .inner{
+    max-width:var(--max);margin:0 auto;
+    padding:18px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    font-size:20px;
+  }
+  .nav-links{display:flex;gap:32px;font-size:14px;color:var(--ink-dim)}
+  .nav-links a:hover{color:var(--ink)}
+  .back-link{font-size:14px;color:var(--ink-dim);display:inline-flex;align-items:center;gap:6px}
+  .back-link:hover{color:var(--ink)}
+
+  /* HEADER */
+  header.case{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:80px 32px 60px;
+  }
+  .eyebrow{
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+    margin-bottom:24px;
+  }
+  h1.case-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(40px,6vw,76px);
+    line-height:1.05;
+    letter-spacing:-0.025em;
+    max-width:14ch;
+    margin-bottom:32px;
+  }
+  h1.case-title em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:400;
+  }
+  .lede{
+    font-size:clamp(18px,1.6vw,22px);
+    color:var(--ink-dim);
+    max-width:60ch;
+    line-height:1.55;
+  }
+
+  /* META BAR */
+  .meta-grid{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px 80px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:60px;
+  }
+  .meta-grid > div .label{
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--ink-dim);margin-bottom:10px;
+  }
+  .meta-grid > div .value{
+    font-family:'Fraunces',serif;font-size:18px;font-weight:500;
+  }
+  .meta-grid > div .value a{
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+  }
+
+  /* SECTIONS */
+  section.chapter{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:100px 32px;
+    border-bottom:1px solid var(--line);
+  }
+  .chapter-num{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    color:var(--accent);
+    font-size:16px;
+    margin-bottom:16px;
+  }
+  h2.chapter-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(32px,4vw,48px);
+    line-height:1.1;
+    letter-spacing:-0.02em;
+    max-width:20ch;
+    margin-bottom:36px;
+  }
+  .chapter-body{
+    max-width:65ch;
+    color:var(--ink-dim);
+    font-size:18px;
+    line-height:1.7;
+  }
+  .chapter-body p{margin-bottom:20px}
+  .chapter-body strong{color:var(--ink);font-weight:500}
+  .chapter-body a{
+    color:var(--ink);
+    border-bottom:1px solid var(--accent);
+    padding-bottom:1px;
+  }
+  .chapter-body a:hover{color:var(--accent)}
+
+  /* IMAGE BLOCKS */
+  .img-block{margin-top:48px}
+  .img-block img{
+    width:100%;display:block;
+    border-radius:6px;
+    border:1px solid var(--line);
+    background:var(--bg-2);
+  }
+  .img-block.half{max-width:520px;margin-left:auto;margin-right:auto}
+  .img-caption{
+    font-size:13px;color:var(--ink-dim);
+    margin-top:14px;font-style:italic;
+  }
+
+  /* SUB-HEADINGS WITHIN CHAPTER */
+  .sub-heading{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:24px;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin-top:80px;
+    margin-bottom:12px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+  }
+  .sub-heading em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:400;
+  }
+  .sub-caption{
+    font-size:15px;
+    color:var(--ink-dim);
+    max-width:60ch;
+    line-height:1.6;
+    margin-bottom:8px;
+  }
+
+  /* IMAGE GRIDS */
+  .img-grid{
+    display:grid;
+    gap:20px;
+    margin-top:48px;
+  }
+  .img-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .img-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .img-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+  .img-grid figure img{
+    width:100%;display:block;
+    border-radius:6px;
+    border:1px solid var(--line);
+  }
+  .img-grid figcaption{
+    font-size:12px;color:var(--ink-dim);
+    margin-top:10px;
+    letter-spacing:0.04em;
+  }
+
+  /* DEVICE PAIR (desktop + mobile side by side) */
+  .device-pair{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    margin-top:48px;
+    align-items:start;
+  }
+  .device-pair img{
+    width:100%;display:block;
+    border-radius:6px;
+    border:1px solid var(--line);
+    background:var(--bg-2);
+  }
+
+  /* LINK LIST (for live pages) */
+  .live-links{
+    margin-top:36px;
+    display:flex;flex-wrap:wrap;gap:12px;
+  }
+  .live-links a{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:14px;
+    color:var(--ink);
+    transition:all 0.2s;
+  }
+  .live-links a:hover{
+    border-color:var(--accent);
+    background:rgba(232,114,44,0.08);
+  }
+  .live-links a::after{content:'↗';color:var(--accent)}
+
+  /* CALLOUT */
+  .callout{
+    margin-top:48px;
+    padding:32px;
+    border-left:3px solid var(--accent);
+    background:var(--bg-2);
+    border-radius:0 6px 6px 0;
+  }
+  .callout p{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:20px;
+    line-height:1.5;
+    color:var(--ink);
+    max-width:55ch;
+  }
+
+  /* CLOSING */
+  section.closing{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:120px 32px;
+    text-align:center;
+  }
+  section.closing h3{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:clamp(28px,3.5vw,42px);
+    line-height:1.3;
+    max-width:30ch;
+    margin:0 auto 40px;
+    color:var(--ink);
+  }
+  .next-link{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:16px 28px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:15px;
+    transition:all 0.2s;
+  }
+  .next-link:hover{
+    border-color:var(--accent);
+    background:rgba(232,114,44,0.08);
+  }
+  .next-link::after{content:'→';color:var(--accent);font-size:18px}
+
+  /* FOOTER */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 32px;
+    text-align:center;
+    color:var(--ink-dim);
+    font-size:13px;
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:780px){
+    .meta-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+    .img-grid.cols-3,.img-grid.cols-4{grid-template-columns:repeat(2,1fr)}
+    .device-pair{grid-template-columns:1fr}
+    .nav-links{display:none}
+    header.case{padding-top:48px}
+    section.chapter{padding:60px 24px}
+    nav.top .inner{padding:14px 20px}
+    header.case,.meta-grid,section.chapter,section.closing{padding-left:20px;padding-right:20px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <a href="../../index.html" class="logo">JB</a>
+    <div class="nav-links">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#contact">Let's talk</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case">
+  <div class="eyebrow">Client Project · Live</div>
+  <h1 class="case-title">La Isla <em>Deli</em></h1>
+  <p class="lede">A full website for a 3-location island-food restaurant in Honduras — designed and built from scratch, with WhatsApp-first ordering and event inquiries.</p>
+</header>
+
+<div class="meta-grid">
+  <div>
+    <div class="label">Role</div>
+    <div class="value">Design &amp; Build</div>
+  </div>
+  <div>
+    <div class="label">Year</div>
+    <div class="value">2025</div>
+  </div>
+  <div>
+    <div class="label">Scope</div>
+    <div class="value">Web Design · Front-end</div>
+  </div>
+  <div>
+    <div class="label">Live site</div>
+    <div class="value"><a href="https://laisla-deli.netlify.app/" target="_blank" rel="noopener">laisla-deli.netlify.app</a></div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="chapter">
+  <div class="chapter-num">— Overview</div>
+  <h2 class="chapter-title">A real restaurant, finally online.</h2>
+  <div class="chapter-body">
+    <p>La Isla Deli is a home-style island-food restaurant born in Roatán in 2015, now serving <strong>three locations</strong> across San Pedro Sula and La Lima. They had no website — no easy way for customers to find locations, browse the menu, or ask about events.</p>
+    <p>I designed and built the full site from scratch: a branded single-page layout, a categorized menu spanning breakfast to dessert, all three branches with hours and buffet times, an about section, and a dedicated events page. Instead of forcing a contact form, I built ordering and event inquiries around <strong>WhatsApp</strong> — because that's how Hondurans actually reach a business.</p>
+    <p>The result is one clean link the deli can drop on Instagram, Facebook, or Google that turns a curious scroll into an order or a booking.</p>
+    <p><strong>Tools:</strong> HTML · CSS · JavaScript · Figma</p>
+
+    <div class="live-links">
+      <a href="https://laisla-deli.netlify.app/" target="_blank" rel="noopener">Visit the live site</a>
+    </div>
+  </div>
+
+  <div class="img-block">
+    <img src="images/hero.png" alt="La Isla Deli homepage hero section" />
+    <div class="img-caption">Homepage hero — brand, headline, and featured dish</div>
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter">
+  <div class="chapter-num">— Chapter 01</div>
+  <h2 class="chapter-title">A menu that shows the real depth of the kitchen.</h2>
+  <div class="chapter-body">
+    <p>The menu is the heart of the site. La Isla Deli serves everything from <strong>breakfast to main plates to dessert and drinks</strong>, so a single flat list would have buried the range. I organized it into clear categories so a visitor can jump straight to what they're craving.</p>
+    <p>Each section is laid out for fast scanning on a phone — the way most people actually browse a restaurant before deciding to order.</p>
+  </div>
+
+  <div class="img-block">
+    <img src="images/menu.png" alt="La Isla Deli menu section with categorized dishes" />
+    <div class="img-caption">Categorized menu — breakfast, main plates, dessert, and drinks</div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter">
+  <div class="chapter-num">— Chapter 02</div>
+  <h2 class="chapter-title">Three branches, real business complexity.</h2>
+  <div class="chapter-body">
+    <p>La Isla Deli isn't one location — it's <strong>three</strong>, across San Pedro Sula and La Lima, each with its own hours and buffet times. The site lays all three out clearly so customers know exactly where to go and when.</p>
+    <p>Handling multiple branches with different schedules is the kind of real-world detail that separates a template from a site built for an actual business.</p>
+  </div>
+
+  <div class="img-block">
+    <img src="images/locations.png" alt="La Isla Deli three locations section with hours and buffet times" />
+    <div class="img-caption">Locations — three branches with individual hours and buffet times</div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter">
+  <div class="chapter-num">— Chapter 03</div>
+  <h2 class="chapter-title">WhatsApp-first, not form-first.</h2>
+  <div class="chapter-body">
+    <p>Most restaurant templates default to a contact form. In Honduras, that's the wrong call — people live on <strong>WhatsApp</strong>. So I built ordering and event inquiries to route straight into a WhatsApp chat, plus a dedicated <strong>Eventos</strong> page for gatherings and bookings.</p>
+    <p>It's a small decision that matches how customers actually behave, and it removes friction between "I'm interested" and "I'm talking to the deli."</p>
+
+    <div class="callout">
+      <p>Design the contact flow around how people already communicate — not around what a template assumes.</p>
+    </div>
+  </div>
+
+  <!-- RESPONSIVE PROOF -->
+  <h3 class="sub-heading">Built responsive — <em>phone-first</em></h3>
+  <p class="sub-caption">Restaurant sites are mostly viewed on phones, so the layout was built to work cleanly across desktop and mobile.</p>
+
+  <div class="device-pair">
+    <img src="images/desktop.png" alt="La Isla Deli site on desktop" />
+    <img src="images/mobile.png" alt="La Isla Deli site on mobile" />
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <h3>A real client, a live site, and one link that turns a scroll into an order.</h3>
+  <a class="next-link" href="../../index.html#work">See more work</a>
+</section>
+
+<footer>
+  © 2026 Jason Bodden · <a href="../../index.html" style="border-bottom:1px solid var(--accent);padding-bottom:1px">Back to portfolio</a>
+</footer>
+
+</body>
+</html>
